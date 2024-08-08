@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button {
+	@apply text-white py-1 px-2 rounded-sm;
+}
+
+[popover] {
+  @apply my-0 mr-0;
+}
+
+.flash {
+  @apply w-80 block transform-gpu transition-all duration-500 opacity-0 -translate-x-full;
+}
+
+.flash:popover-open {
+  @apply opacity-100 translate-x-0;
+}
+
+.flash > div {
+	@apply text-white p-2 rounded-sm;
+}
+
+.flash.error > div {
+  @apply bg-rose-500;
+}
+
+.flash.success > div {
+	@apply bg-lime-500;
+}
+
+.flash.info > div {
+	@apply bg-sky-500;
+}
+
+.flash.warning > div {
+	@apply bg-amber-500;
+}
+
+@starting-style {
+  .flash:popover-open {
+    @apply opacity-0 -translate-x-full;
+  }
+}
+
+.close-container {
+	position: absolute;
+	top: .25rem;
+	right: .25rem;
+	display: flex;
+	flex-shrink: 0;
+}
+
+.flash-close {
+	color: white;
+}
+
+.xmark-icon {
+	height: 1rem;
+	width: 1rem;
+}
