@@ -23,7 +23,7 @@
 	}
 </script>
 
-<h1>Hello Flash!</h1>
+<h1>Click to display a notification</h1>
 
 <Notifications />
 

@@ -8,6 +8,7 @@
 	import { beforeUpdate, onMount, onDestroy } from 'svelte';
 	import notifications from './notifications.js';
 
+	let element;
 	const closedState = 'closed';
 
 	const listenerOptions = {
@@ -29,28 +30,21 @@
   }
 
 	onMount(() => {
-		console.log('onmount', message.node);
-		// message.node = element;
 		message.node.showPopover();
-		// closeTask = autoClose(element, 3000);
-		 return () => {
-			console.log('onunmount', message.node);
-		 }
+		closeTask = autoClose(message.node, 5000);
 	});
 
 	onDestroy(() => {
-		console.log('ondestroy', message.node);
+		// console.log('ondestroy', message.node);
 		// clearTimeout(closeTask);
 		// onClose(message);
 	});
 
 	beforeUpdate(() => {
-		// debugger;
+		
 	});
 
 	const show = (node) => {
-		console.log('show', node);
-
 		if (message.node) {
 			return;
 		}
@@ -60,11 +54,10 @@
 
 	function removeNotification() {
 		let queue = get(notifications);
-		// let index = queue.indexOf(message);
 		console.log('onremove', index);
 		if (index >= 0) {
 			queue.splice(index, 1);
-			notifications.update(() => queue);
+			// notifications.update(() => queue);
 		}
 	}
 
@@ -108,6 +101,7 @@
   role="alert"
   class="flash {message.type}"
   popover="manual"
+  bind:this={message.node}
   on:toggle={onToggle}
   on:beforetoggle={onBeforeToggle}
 >

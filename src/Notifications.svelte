@@ -5,14 +5,13 @@
 	import Notification from './Notification.svelte';
 
 	notifications.subscribe((value) => {
-		console.log('queue updated', value);
 		queue = value;
 	});
 </script>
 
 <div class="flash-list">
 	{#each queue as message, index}
-		<Notification message={message} index={index} bind:this={message.node}>
+		<Notification message={message} index={index}>
 			<div class="relative">
 	      {index}::{@html message.message}
 	      <div class="close-container">
@@ -26,5 +25,3 @@
 		</Notification>
 	{/each}
 </div>
-
-<div>Notifications count: {queue.length}</div>
